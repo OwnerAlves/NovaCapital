@@ -1,0 +1,256 @@
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <title>Nova Capital Roleplay</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="captchaModal" class="captcha-modal">
+    <div class="captcha-modal-content">
+      <div id="captchaStep1" class="captcha-step active">
+        <h2>Verificação Anti-Robô - Passo 1</h2>
+        <p>Arraste o botão até o final para continuar</p>
+        <div id="sliderCaptcha" class="slider-captcha">
+          <div id="sliderButton" class="slider-button">>>></div>
+        </div>
+      </div>
+      <div id="captchaStep2" class="captcha-step">
+        <h2>Verificação Anti-Robô - Passo 2</h2>
+        <p id="captchaMathQuestion">Resolva o desafio:</p>
+        <input type="text" id="captchaMathAnswer" placeholder="Digite sua resposta">
+        <button id="captchaMathVerify" class="nav-button">Verificar</button>
+        <p id="captchaMathError" style="color: red; display: none;">Resposta incorreta. Tente novamente.</p>
+      </div>
+      <div id="captchaStep3" class="captcha-step">
+        <h2>Verificação Anti-Robô - Passo 3</h2>
+        <p>Clique no botão para confirmar que você não é um robô</p>
+        <button id="captchaFinalButton" class="nav-button">Não sou um robô</button>
+      </div>
+    </div>
+  </div>
+  <header>
+    <h1>Nova Capital Roleplay</h1>
+  </header>
+  <div class="nav-buttons">
+    <button id="navComprar" class="nav-button">Comprar Coins</button>
+    <button id="navDownload" class="nav-button">Download</button>
+  </div>
+
+  <button id="toggleButton">
+    <svg width="30" height="30" viewBox="0 0 30 30">
+      <rect x="5" y="7" width="20" height="2" fill="#fff" rx="1"></rect>
+      <rect x="5" y="14" width="20" height="2" fill="#fff" rx="1"></rect>
+      <rect x="5" y="21" width="20" height="2" fill="#fff" rx="1"></rect>
+    </svg>
+  </button>
+
+  <div id="sidebar">
+    <ul class="sidebar-tabs">
+      <li data-tab="inicial" class="active">Inicial</li>
+      <li data-tab="download">Download</li>
+      <li data-tab="biblias">Biblia RP</li>
+      <li data-tab="comprar">Comprar Coins/VIP</li>
+      <li data-tab="discord">Discord e Servidor</li>
+      <li data-tab="desenvolvimento">Desenvolvimento</li>
+    </ul>
+  </div>
+
+  <main>
+    <section id="inicial" class="tab-content active">
+      <h2>Bem-vindo à Nova Capital Roleplay! 🎮✨</h2>
+      <p>
+        Aqui você encontra tudo o que precisa para aproveitar ao máximo sua experiência no servidor!
+      </p>
+      <p>
+        ✅ Baixe para Computador e conecte-se ao nosso mundo.<br>
+        📜 Leia as Bíblias e fique por dentro das regras e mecânicas do jogo.<br>
+        💰 Adquira Coins/VIP para desbloquear benefícios exclusivos e elevar sua jogabilidade.
+      </p>
+      <p>
+        Prepare-se para viver a melhor experiência Roleplay! 🚀🔥
+      </p>
+    </section>
+    <section id="download" class="tab-content">
+      <h2>🎮 Baixar SAMP para Computador</h2>
+      <p>Para começar sua jornada no Nova Capital Roleplay, siga este guia passo a passo para instalar o SAMP (San Andreas Multiplayer) no seu PC:</p>
+      
+      <h3>📥 Guia de Instalação</h3>
+      <ol>
+        <li>Baixe o GTA San Andreas (versão original para melhor compatibilidade)</li>
+        <li>Faça o download do SAMP (San Andreas Multiplayer) através do site oficial</li>
+        <li>Execute a instalação do SAMP na mesma pasta do GTA SA</li>
+        <li>Abra o SAMP e adicione nosso IP: 104.167.222.158:2519</li>
+        <li>Clique em "Connect" e comece sua aventura!</li>
+      </ol>
+      
+      <p><strong>💡 Dica Importante:</strong> Para evitar problemas de conexão, certifique-se de que seu GTA está sem mods incompatíveis.</p>
+      
+      <div class="download-buttons">
+        <a class="download-button" href="https://www.mediafire.com/file/9k23x2but5x3hxc/GTA_San_Andreas.rar/file" target="_blank">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          GTA San Andreas
+        </a>
+        <a class="download-button" href="https://www.sa-mp.mp/downloads/" target="_blank">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          SAMP
+        </a>
+        <a id="apkMobileButton" class="download-button" href="#">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+          APK Mobile
+        </a>
+      </div>
+    </section>
+    <section id="biblias" class="tab-content">
+      <h2>Biblia RP</h2>
+      <div class="guidelines">
+        <p><strong>AMOR À VIDA</strong><br>
+        É um dos conceitos mais importantes no roleplay. Você precisa sempre jogar dando amor à sua vida, não andando em zonas perigosas (de gangsters), dar uma vida saudável ao seu personagem (se alimentar bem), não realizar ações que possam resultar em morte.</p>
+        <p>? Não poderá se matar para fugir de prisão ou assalto.</p>
+        <p>? Nunca reaja a um assalto.</p>
+        <p>? Você não poderá lembrar de nada após aceitar sua morte.</p>
+        <p>? Uma vez que você esteja com carro parado, você não poderá fugir em uma abordagem ou rendição por bandidos.</p>
+        <p><strong>USO DO /ME OU /EU</strong><br>
+        O /me é o comando mais importante para simular ações RP que não podem ser mostradas visualmente no jogo. É muito importante a utilização dele!<br>
+        Exemplo: /me segura um copo de água. /me está cansado.</p>
+        <p><strong>OCC (Fora do Personagem)</strong><br>
+        O seu personagem vive em um mundo separado do nosso. O mundo real é chamado de OOC.</p>
+        <p><strong>IC (Dentro do Personagem)</strong><br>
+        O mundo IC é aonde você desenvolve e interpreta seu personagem.</p>
+        <p><strong>DM/RDM (DEATH-MATCH)</strong><br>
+        Quando você mata alguém ou várias pessoas sem motivo. Isso resulta em punições próximas ao banimento.</p>
+        <p><strong>VDM (VEHICLE DEATH-MATCH)</strong><br>
+        É quando um jogador usa um veículo como arma para matar outro jogador (atropelamento proposital).</p>
+        <p><strong>DB (DRIVE-BY)</strong><br>
+        Muito semelhante com o conceito de VDM. O motorista ou passageiro não pode atirar pela janela do veículo. Violação disso pode acarretar banimento.</p>
+        <p><strong>PK (PLAYER-KILL)</strong><br>
+        É a morte oficial do personagem. Quando você morre, perderá TODA a memória do seu personagem, não lembrando quem te matou ou qualquer evento que levou a sua morte. Deverá seguir o jogo como se nada tivesse acontecido. Não poderá voltar no local da ação para continuar ela. Violar isso resultará em punição grave.</p>
+        <p><strong>RK (REVANGE-KILL-KILL)</strong><br>
+        Conceito que entra junto com PK. É extremamente proibido você se vingar de uma ação e pessoa que levou sua morte anteriormente. Violação resultará em banimento.</p>
+        <p><strong>MG/GG (META-GAMING/GHOSTGAMING)</strong><br>
+        É quando você mistura coisas do OCC (da vida real) com IC (do jogo) para utilizar de qualquer forma no game. Punição grave.</p>
+        <p><strong>MIX</strong><br>
+        Conceito que se encaixa no MG. É quando você mistura chat do OCC com chat ICC. Punição grave por tirar o RP do jogo.<br>
+        Exemplo: MINHA MÃE TÁ ME CHAMANDO /OCC, VOCÊ NÃO SABE JOGAR, VOCÊ ASSISTIU O JOGO DE ONTEM?</p>
+        <p><strong>PG (POWER-GAMING)</strong><br>
+        É quando você realiza algo que seria humanamente impossível de se realizar na vida real, ou quando impõe situações RP em que outros indivíduos não querem participar.<br>
+        Exemplo: Subir montes de van, cair do veículo e não fazer ação de ferido.</p>
+        <p><strong>KOS</strong><br>
+        É quando você tenta ou consegue matar alguém que você reconheceu ao avistar sua roupa ou ID. Punição grave.<br>
+        Exemplo: atirar em policial ao estar fardado.</p>
+        <p><strong>CJ (CAR-JACKED)</strong><br>
+        É quando você rouba um veículo tirando alguém da posição de motorista. Isso sem motivo aparente. É algo totalmente proibido.</p>
+        <p><strong>CB (COP-BAIT)</strong><br>
+        É quando você força perseguição policial, chamando atenção para querer dar fuga. Isso é extramamente proibido.</p>
+        <p><strong>CL (COMBAT-LOG)</strong><br>
+        É quando você sai do servidor em meio a ação para se beneficiar. É algo grave que tenderá a punições próximas ao banimento.<br>
+        Exemplo: Sair para não ser preso, abordado ou assaltado.</p>
+        <p><strong>BH (BUNNY-HOG)</strong><br>
+        É quando você anda pulando no jogo para ter alguma vantagem (ser mais rápido ou fugir).</p>
+        <p><strong>SEJA RP!</strong><br>
+        ? Interprete seu personagem da melhor forma possível.<br>
+        ? Não cometa atos ANT-RP.<br>
+        ? Não estrague a diversão dos outros jogadores.</p>
+      </div>
+    </section>
+    <section id="comprar" class="tab-content">
+      <h2>Comprar Coins/VIP</h2>
+      <div class="coins-container">
+        <div class="coins-info">
+          <div class="coins-card">
+            <div class="coins-icon">
+              <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="25" cy="25" r="20" fill="url(#coinGradient)" />
+                <text x="25" y="32" fill="white" text-anchor="middle" font-size="20" font-weight="bold">$</text>
+                <defs>
+                  <linearGradient id="coinGradient" x1="0" y1="0" x2="50" y2="50">
+                    <stop offset="0%" stop-color="#FFD700"/>
+                    <stop offset="100%" stop-color="#FFA500"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="price-info">
+              <h3>💰 Transforme seus Coins em benefícios! 💰</h3>
+              <p>Cada 1.000 Coins equivalem a R$1,00. Ou seja, se você quiser 10.000 Coins, o valor será de apenas R$10,00! 🔥</p>
+              <p class="highlight">✨ Resgate seus Coins agora mesmo! ✨</p>
+              <p>Clique no botão abaixo e realize seu pagamento de forma rápida e segura via Pix. Aproveite essa oportunidade e garanta seus benefícios instantaneamente! 🚀💸</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="pix-button" href="https://pix.example.com" target="_blank">Pagar Via Pix</a>
+      <a class="resgatar-button" href="https://wa.link/71el42" target="_blank">Resgatar Coins</a>
+    </section>
+    <section id="discord" class="tab-content">
+      <h2>Discord e Servidor</h2>
+      <div class="discord-content">
+        <div class="server-info">
+          <div class="server-card">
+            <div class="server-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 12C40 10.9 39.1 10 38 10H10C8.9 10 8 10.9 8 12V36C8 37.1 8.9 38 10 38H38C39.1 38 40 37.1 40 36V12Z" fill="#7289DA"/>
+                <path d="M32.3 24.1C32.3 24.1 30.6 22.8 28.5 22.6L28.2 22.9C30.1 23.4 31 24.2 31.9 25.2C29.3 23.9 26.8 23.9 24.1 24.6C23.3 24.8 22.8 24.9 22.1 25.1C21.8 25.2 21.5 25.2 21.2 25.3C21.1 25.3 21.1 25.3 21 25.3C20.8 25.4 20.6 25.4 20.4 25.4C19.4 25.7 18.8 25.9 18.8 25.9C18.8 25.9 19.7 25 21.8 24.5L21.6 24.3C19.5 24.5 17.8 25.8 17.8 25.8C17.8 25.8 15.6 29.8 15.6 34.7C17.9 37.1 21.3 37.1 21.3 37.1L22.3 35.9C20.8 35.4 19.4 34.5 18.2 33.3C19.6 34.2 21.2 34.9 23.1 35.3C24.2 35.5 25.4 35.6 26.6 35.5C28.3 35.4 30 35 31.7 34.3C32.6 33.9 33.5 33.4 34.3 32.8C33.1 34 31.7 34.9 30.1 35.4L31.1 36.6C31.1 36.6 34.5 36.6 36.8 34.2C36.8 29.3 34.6 25.3 34.6 25.3C34.6 25.3 33.5 24.4 31.9 23.9L32.3 24.1ZM22.9 32.3C21.9 32.3 21.1 31.4 21.1 30.3C21.1 29.2 21.9 28.3 22.9 28.3C23.9 28.3 24.7 29.2 24.7 30.3C24.7 31.4 23.9 32.3 22.9 32.3ZM29.5 32.3C28.5 32.3 27.7 31.4 27.7 30.3C27.7 29.2 28.5 28.3 29.5 28.3C30.5 28.3 31.3 29.2 31.3 30.3C31.3 31.4 30.5 32.3 29.5 32.3Z" fill="white"/>
+              </svg>
+            </div>
+            <div class="server-details">
+              <h3>Entre no nosso Discord</h3>
+              <p>Fique por dentro das novidades, atualizações e interaja com a comunidade!</p>
+              <a class="discord-button" href="https://discord.gg/nEUCWYDugw" target="_blank">
+                Entrar no Discord
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="server-card">
+            <div class="server-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM24 40C15.18 40 8 32.82 8 24C8 15.18 15.18 8 24 8C32.82 8 40 15.18 40 24C40 32.82 32.82 40 24 40Z" fill="#FF0000"/>
+                <path d="M24 12C17.37 12 12 17.37 12 24C12 30.63 17.37 36 24 36C30.63 36 36 30.63 36 24C36 17.37 30.63 12 24 12ZM24 32C19.59 32 16 28.41 16 24C16 19.59 19.59 16 24 16C28.41 16 32 19.59 32 24C32 28.41 28.41 32 24 32Z" fill="#FF0000"/>
+                <circle cx="24" cy="24" r="4" fill="#FF0000"/>
+              </svg>
+            </div>
+            <div class="server-details">
+              <h3>Conecte-se ao Servidor</h3>
+              <p>IP do Servidor:</p>
+              <div class="ip-display">
+                <code>104.167.222.158:2519</code>
+                <button class="copy-ip-button" onclick="copyIP()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V8.342a2 2 0 00-.602-1.43l-3.31-3.31A2 2 0 0014.658 3H10a2 2 0 00-2 2z"/>
+                    <path d="M16 17v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="desenvolvimento" class="tab-content">
+      <h2>Lista de Donos de Corps e Orgs</h2>
+      <p>Aqui você encontrará a lista completa de todos os donos de corps e orgs. Fique atento para mais informações e atualizações.</p>
+    </section>
+  </main>
+  
+  <div id="pixModal" class="pix-modal">
+    <div class="pix-modal-content">
+      <span class="pix-modal-close">&times;</span>
+      <p>Copie o código Pix abaixo:</p>
+      <pre id="pixCode">00020126330014BR.GOV.BCB.PIX0111241095148195204000053039865802BR5922ANTONIO GILBERTO ALVES6009Sao Paulo61080803176062070503***6304E6DE</pre>
+      <button id="copyPixButton" class="copy-button">Copiar código</button>
+    </div>
+  </div>
+  
+  <script src="main.js"></script>
+</body>
+</html>

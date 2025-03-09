@@ -74,7 +74,7 @@ body::after {
   filter: blur(2px);
 }
 
-/* Generate 20 particles with different animations */
+/* Generate 20 particles with different animations */ 
 @for $i from 1 through 20 {
   .particle:nth-child(#{$i}) {
     left: #{random(100)}vw;
@@ -1010,4 +1010,10 @@ main p {
   color: #fff;
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
   transform: translateY(-2px);
+}
+
+.elemento {
+    background-image: url(https://cdn.discordapp.com/avatars/1121168542423859312/93a5b89c8662ac99dc66bd800a65b118);
+    width: 100px;
+    height: 100px;
 }

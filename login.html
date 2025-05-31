@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Capital RP - Login / Registrar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <script type="importmap">
+    {
+        "imports": {
+            
+        }
+    }
+    </script>
+    <!-- A style tag para .tabs, .tab-button, .tab-content foi movida para style.css -->
+</head>
+<body>
+    <header>
+        <nav class="navbar container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="assets/logo.png" alt="Nova Capital RP Logo" id="logo"></a>
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="about.html">Sobre</a></li>
+                <li><a href="how-to-play.html">Como Jogar</a></li>
+                <li><a href="rules.html">Regras</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="support.html">Suporte</a></li>
+                <li><a href="https://discord.gg/SEULINK" target="_blank">Discord</a></li>
+                <li><a href="login.html" class="nav-button">Login / Registrar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="login-register-page">
+        <div class="container">
+            <div class="page-content" style="padding-bottom: 40px;"> 
+                 <div class="form-container" style="max-width: 550px; margin-top: 0;"> 
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="login" type="button">Login</button>
+                        <button class="tab-button" data-tab="register" type="button">Registrar</button>
+                        <button class="tab-button" data-tab="user-area" type="button">Área do Usuário</button>
+                    </div>
+
+                    <div id="login" class="tab-content active">
+                        <h2>Login</h2>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                <input type="email" id="loginEmail" name="email" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Senha</label>
+                                <input type="password" id="loginPassword" name="password" required autocomplete="current-password">
+                            </div>
+                            <button type="submit" class="form-button">Entrar</button>
+                            <a href="#" class="form-link">Esqueceu a senha?</a>
+                        </form>
+                    </div>
+
+                    <div id="register" class="tab-content">
+                        <h2>Registrar</h2>
+                        <form id="registerForm">
+                            <div class="form-group">
+                                <label for="registerUsername">Nome de Usuário (Discord)</label>
+                                <input type="text" id="registerUsername" name="username" required autocomplete="username">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail">Email</label>
+                                <input type="email" id="registerEmail" name="email" required autocomplete="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">Senha</label>
+                                <input type="password" id="registerPassword" name="password" required autocomplete="new-password">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerConfirmPassword">Confirmar Senha</label>
+                                <input type="password" id="registerConfirmPassword" name="confirmPassword" required autocomplete="new-password">
+                            </div>
+                            <button type="submit" class="form-button">Registrar</button>
+                        </form>
+                    </div>
+                    
+                    <div id="user-area" class="tab-content">
+                        <h2>Área do Usuário (Demonstração)</h2>
+                        <div class="user-area-content">
+                            <p>Bem-vindo, <strong>[Nome do Usuário]</strong>!</p>
+                            <h3>Status da Whitelist</h3>
+                            <p style="color: #2ecc71; font-weight: bold;">Aprovado <i class="fas fa-check-circle"></i></p>
+                            <h3>Histórico de Tickets</h3>
+                            <ul>
+                                <li>Ticket #123: Problema com veículo - <span style="color: #27ae60;">Resolvido</span></li>
+                                <li>Ticket #125: Dúvida sobre regra - <span style="color: #f39c12;">Em Andamento</span></li>
+                            </ul>
+                            <h3>Atualizações Recentes</h3>
+                            <p>Nova atualização v1.5 disponível! Confira as notas no Discord.</p>
+                            <h3>Avisos Importantes</h3>
+                            <p>Manutenção programada para Sábado às 03:00 AM (horário do servidor).</p>
+                            <button type="button" class="form-button" style="margin-top: 20px; background-color: #c0392b;">Logout (Simulação)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Nova Capital RP. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="https://discord.gg/SEULINK" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script>
+        // Tab functionality for Login/Register page (kept here as it's page-specific)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const loginRegisterPage = document.getElementById('login-register-page');
+
+            if (tabButtons.length > 0 && tabContents.length > 0 && loginRegisterPage) { 
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+
+                        const targetTab = button.getAttribute('data-tab');
+                        tabContents.forEach(content => {
+                            content.classList.remove('active');
+                            if (content.id === targetTab) {
+                                content.classList.add('active');
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

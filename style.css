@@ -603,6 +603,149 @@ footer {
     font-size: 1rem;
 }
 
+/* Admin Footer Link */
+.admin-footer-link {
+    color: var(--text-muted-color);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.admin-footer-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Admin Page Ticket Styles */
+#admin-page .page-content {
+    background-color: rgba(30, 36, 43, 0.95); /* Slightly different background for admin section */
+}
+
+.admin-tickets-ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-ticket-item {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+}
+
+.admin-ticket-item .ticket-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.admin-ticket-item .ticket-header h4 {
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 1.3rem;
+}
+.admin-ticket-item .ticket-header small {
+    color: var(--text-muted-color);
+    font-size: 0.85rem;
+}
+
+.admin-ticket-item .ticket-details p {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--text-muted-color);
+    display: flex; /* Align items for button placement */
+    align-items: center; /* Vertically center items */
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+}
+.admin-ticket-item .ticket-details p strong {
+    color: var(--text-color);
+    min-width: 100px;
+    display: inline-block;
+    margin-right: 5px; /* Add some space next to strong tag */
+}
+.admin-ticket-item .ticket-details pre {
+    background-color: var(--primary-color);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    white-space: pre-wrap; /* Ensures text wraps */
+    word-break: break-word; /* Ensures long words break */
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.admin-ticket-item .ticket-actions {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.admin-ticket-item .delete-ticket-btn,
+.admin-ticket-item .update-status-select,
+.admin-ticket-item .download-attachment-btn { /* Added download button */
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+    margin-left: 10px;
+}
+
+.admin-ticket-item .download-attachment-btn { /* Specific style for download button */
+    background-color: #17a2b8; /* A different blue, or keep accent-color */
+    margin-left: 5px; /* Adjust margin for placement within the <p> tag */
+    padding: 6px 12px; /* Slightly smaller padding */
+    font-size: 0.85rem;
+}
+.admin-ticket-item .download-attachment-btn:hover {
+    background-color: #138496;
+}
+
+.admin-ticket-item .delete-ticket-btn {
+    background-color: #dc3545; /* Red for delete */
+}
+.admin-ticket-item .delete-ticket-btn:hover {
+    background-color: #c82333;
+}
+
+.admin-ticket-item .update-status-select {
+    background-color: var(--accent-color);
+    padding-right: 30px; /* Space for dropdown arrow */
+    appearance: none; /* For custom arrow if desired, not implemented here */
+}
+.admin-ticket-item .update-status-select:hover {
+    background-color: var(--accent-hover-color);
+}
+
+.ticket-status {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    border-radius: var(--border-radius);
+    color: white;
+    margin-left: 10px;
+    text-transform: capitalize;
+    font-weight: 500;
+}
+.status-novo { background-color: #007bff; } /* Blue */
+.status-em-análise { background-color: #ffc107; color: #333; } /* Yellow - text color #333 ensures readability */
+.status-resolvido { background-color: #28a745; } /* Green */
+.status-fechado { background-color: #17a2b8; } /* Changed from gray to a distinct Blue for 'Fechado' */
+
 /* Responsive Design */
 @media (min-width: 769px) { /* Desktop styles */
     .mobile-menu-button {

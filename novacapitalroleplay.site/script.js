@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Audio Interaction Code START ---
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const audioContext = new(window.AudioContext || window.webkitAudioContext)();
     let clickSoundBuffer = null;
     let hoverSoundBuffer = null;
 
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function initSounds() {
-        clickSoundBuffer = await loadSound('/ui_click.mp3'); 
-        hoverSoundBuffer = await loadSound('/ui_hover.mp3'); 
+        clickSoundBuffer = await loadSound('/ui_click.mp3');
+        hoverSoundBuffer = await loadSound('/ui_hover.mp3');
     }
 
     function playSound(buffer) {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             element.addEventListener('click', () => {
                 if (audioContext && audioContext.state === 'suspended') {
                     audioContext.resume().then(() => {
-                         if (clickSoundBuffer) playSound(clickSoundBuffer);
+                        if (clickSoundBuffer) playSound(clickSoundBuffer);
                     }).catch(err => console.error("Error resuming audio context on click:", err));
                 } else if (clickSoundBuffer) {
                     playSound(clickSoundBuffer);
@@ -73,13 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile menu toggle (Dropdown behavior) ---
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (mobileMenuButton && navLinks) {
         const icon = mobileMenuButton.querySelector('i');
 
         mobileMenuButton.addEventListener('click', (event) => {
-            event.stopPropagation(); 
-            navLinks.classList.toggle('active'); 
+            event.stopPropagation();
+            navLinks.classList.toggle('active');
 
             if (navLinks.classList.contains('active')) {
                 if (icon) {
@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        
+
         document.addEventListener('click', (event) => {
-            if (navLinks.classList.contains('active') && 
-                !navLinks.contains(event.target) && 
+            if (navLinks.classList.contains('active') &&
+                !navLinks.contains(event.target) &&
                 !mobileMenuButton.contains(event.target)) {
-                
+
                 navLinks.classList.remove('active');
                 if (icon) {
                     icon.classList.remove('fa-times');
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add resize listener to reset mobile menu state if window becomes desktop-sized
         window.addEventListener('resize', () => {
             // 769px is the breakpoint used in style.css for desktop view
-            if (window.innerWidth >= 769) { 
+            if (window.innerWidth >= 769) {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active'); // Close mobile menu
                     if (icon) {
@@ -138,17 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Active navigation link styling
-    const currentLocation = window.location.pathname;
+    const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
     const allNavLinks = document.querySelectorAll('.nav-links a');
     allNavLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        // Check for exact match or if it's the index page
-        if (linkHref === currentLocation.substring(currentLocation.lastIndexOf('/') + 1) || (currentLocation.endsWith('/') && linkHref === 'index.html')) {
-             link.classList.add('active');
-        } else if (currentLocation.includes(linkHref) && linkHref !== 'index.html' && linkHref !== '') {
+        const linkPage = link.getAttribute('href').split('/').pop();
+        if (linkPage === currentLocation) {
             link.classList.add('active');
-        } else if ((currentLocation.endsWith('/') || currentLocation.endsWith('index.html')) && link.getAttribute('href') === 'index.html') {
-             link.classList.add('active');
+        }
+        if (currentLocation === '' && linkPage === 'index.html') {
+            link.classList.add('active');
         }
     });
 
@@ -157,34 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
     ruleCategoryHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
-            
-            // Toggle 'open' class for styling the header/icon
-            header.classList.toggle('open');
-            
-            if (content.style.maxHeight) {
-                // If it's open, close it
-                content.style.maxHeight = null;
-            } else {
-                // If it's closed, open it
-                content.style.maxHeight = content.scrollHeight + "px";
-            } 
-        });
-    });
+            const icon = header.querySelector('.toggle-icon');
 
-    // FAQ page: Expandable categories
-    const faqCategoryHeaders = document.querySelectorAll('.faq-category-header');
-    faqCategoryHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            header.classList.toggle('open');
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                if (icon) icon.style.transform = 'rotate(0deg)';
             } else {
-                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.display = 'block';
+                if (icon) icon.style.transform = 'rotate(90deg)';
             }
         });
     });
-
 
     // Basic form submission handler (prevents default and logs for now)
     const forms = document.querySelectorAll('form');
@@ -194,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Form submitted:', form.id);
             if (form.id === 'supportForm') {
                 handleSupportFormSubmit(form); // Updated to call new handler
-            } 
+            }
             if (form.id === 'adminLoginForm') {
                 handleAdminLogin(form);
             }
@@ -211,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email: formData.get('email'),
             subject: formData.get('subject'),
             problem: formData.get('problem'),
-            attachmentName: formData.get('attachment')?.name || 'Nenhum',
+            attachmentName: formData.get('attachment') ? .name || 'Nenhum',
             timestamp: new Date().toLocaleString('pt-BR'),
             status: 'Novo' // Default status
         };
@@ -231,7 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 8000); // Increased timeout for longer message
             } else {
                 alert('Seu ticket foi enviado com sucesso! Iremos analisar e enviar uma resposta para o seu e-mail. Para assuntos de extrema importância, por favor, entre em nosso Discord.');
-                form.reset();
             }
         } catch (error) {
             console.error("Erro ao salvar ticket no localStorage:", error);
@@ -241,7 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ADMIN_PASSWORD = "ncrp2025"; // Store securely in a real app!
 
-    // This function is no longer used for page load authentication.
     function authenticateAdmin() {
         const enteredPassword = prompt("Por favor, insira a senha de administrador:", "");
         if (enteredPassword === ADMIN_PASSWORD) {
@@ -250,20 +229,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const accessDeniedMsg = document.getElementById('admin-access-denied');
             const authSection = document.getElementById('admin-auth-section');
             const contentSection = document.getElementById('admin-content-section');
-            
+
             // This old logic for prompt-based auth needs to be mostly removed or adapted.
             // For now, we'll just return false. The new handleAdminLogin will manage UI.
-            if(document.getElementById('admin-page')) { // Only if on admin page
-                 if(accessDeniedMsg) accessDeniedMsg.style.display = 'block';
-                 if(authSection) authSection.style.display = 'block'; // Ensure login form is visible
-                 if(contentSection) contentSection.style.display = 'none';
+            if (document.getElementById('admin-page')) { // Only if on admin page
+                if (accessDeniedMsg) accessDeniedMsg.style.display = 'block';
+                if (authSection) authSection.style.display = 'block'; // Ensure login form is visible
+                if (contentSection) contentSection.style.display = 'none';
             }
         } else { // User cancelled or entered nothing
-             if(document.getElementById('admin-page')) {
+            if (document.getElementById('admin-page')) {
                 const authSection = document.getElementById('admin-auth-section');
                 // If user cancels prompt, make sure login form is still visible
-                if(authSection) authSection.style.display = 'block';
-             }
+                if (authSection) authSection.style.display = 'block';
+            }
         }
         return false;
     }
@@ -277,19 +256,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const accessDeniedMsg = document.getElementById('admin-access-denied');
 
         if (enteredPassword === ADMIN_PASSWORD) {
-            if(authSection) authSection.style.display = 'none';
-            if(contentSection) contentSection.style.display = 'block';
-            if(accessDeniedMsg) accessDeniedMsg.style.display = 'none';
+            if (authSection) authSection.style.display = 'none';
+            if (contentSection) contentSection.style.display = 'block';
+            if (accessDeniedMsg) accessDeniedMsg.style.display = 'none';
             displayTickets();
 
             const refreshButton = document.getElementById('refreshTicketsBtn');
-            if(refreshButton) {
+            if (refreshButton) {
                 refreshButton.addEventListener('click', displayTickets);
             }
         } else {
-            if(authSection) authSection.style.display = 'block'; // Keep login form visible
-            if(contentSection) contentSection.style.display = 'none';
-            if(accessDeniedMsg) accessDeniedMsg.style.display = 'block';
+            if (authSection) authSection.style.display = 'block'; // Keep login form visible
+            if (contentSection) contentSection.style.display = 'none';
+            if (accessDeniedMsg) accessDeniedMsg.style.display = 'block';
             passwordInput.value = ''; // Clear password field
             passwordInput.focus();
         }
@@ -314,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tickets.forEach((ticket, index) => {
                 const li = document.createElement('li');
                 li.className = 'admin-ticket-item';
-                
+
                 // Prepare attachment download button if an attachment exists
                 let attachmentDownloadButtonHTML = '';
                 if (ticket.attachmentName && ticket.attachmentName !== 'Nenhum') {
@@ -385,10 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ticketListContainer.innerHTML = '<p>Erro ao carregar tickets. Verifique o console para detalhes.</p>';
         }
     }
-    
+
     function escapeHTML(str) {
         if (typeof str !== 'string') return '';
-        return str.replace(/[&<>"']/g, function (match) {
+        return str.replace(/[&<>"']/g, function(match) {
             return {
                 '&': '&amp;',
                 '<': '&lt;',
@@ -439,9 +418,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const contentSection = document.getElementById('admin-content-section');
         const accessDeniedMsg = document.getElementById('admin-access-denied');
 
-        if(authSection) authSection.style.display = 'block';
-        if(contentSection) contentSection.style.display = 'none';
-        if(accessDeniedMsg) accessDeniedMsg.style.display = 'none';
+        if (authSection) authSection.style.display = 'block';
+        if (contentSection) contentSection.style.display = 'none';
+        if (accessDeniedMsg) accessDeniedMsg.style.display = 'none';
 
         // If a refresh button exists (it's inside the content section),
         // it means the user might have already logged in, and this script part is re-evaluated (e.g., after a soft navigation or error).
@@ -449,37 +428,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- Support Ticket System END ---
 
-    // --- Simulated Player Count START ---
-    function updatePlayerCount() {
-        const playerCountElement = document.getElementById('player-count');
-        if (playerCountElement) {
-            // Player count is hardcoded to 0/100, so this function is disabled
-            // // Let's assume a base of 78 players and fluctuate it
-            // let baseCount = 78;
-            // let fluctuation = Math.floor(Math.random() * 11) - 5; // Fluctuate by -5 to +5
-            // let currentPlayers = baseCount + fluctuation;
-
-            // // Ensure it doesn't go below a certain threshold or above max
-            // if (currentPlayers < 60) currentPlayers = 60;
-            // if (currentPlayers > 150) currentPlayers = 150;
-
-            // playerCountElement.textContent = `${currentPlayers} / 150`;
-        }
-    }
-
-    // Update the count when the page loads and then every 7 seconds
-    if (document.getElementById('player-count')) {
-        // Since the server is in development, we don't need to simulate players.
-        // updatePlayerCount(); 
-        // setInterval(updatePlayerCount, 7000); 
-    }
-    // --- Simulated Player Count END ---
-
-
     // --- "Play Now" Button Functionality START ---
     const playNowButton = document.getElementById('playNowButton');
-    if (playNowButton && playNowButton.getAttribute('href') === '#') { // Keep old logic only if it's the generic button
-        const serverIp = "jogar.novacapitalrp.com:7777"; // !!! REPLACE WITH ACTUAL SERVER IP AND PORT !!!
+    if (playNowButton) {
+        const serverIp = "seu.ip.do.servidor:porta"; // !!! REPLACE WITH ACTUAL SERVER IP AND PORT !!!
 
         playNowButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -489,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 2. Attempt to open SA-MP client
                 // Note: The user must have SA-MP installed and the samp:// protocol handler registered.
                 window.location.href = `samp://${serverIp}`;
-                
+
                 // 3. Provide feedback
                 // Create a temporary notification element
                 const notification = document.createElement('div');
@@ -519,39 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Erro ao copiar o IP. Por favor, copie manualmente: ' + serverIp);
             });
         });
-    } else if (playNowButton) { // Fallback for old functionality if href="#"
-        // The button now links to how-to-play.html, this old logic is deprecated
-        // but kept for reference in case the button is repurposed.
-        // For now, we do nothing as it's a direct link.
     }
     // --- "Play Now" Button Functionality END ---
-
-    // --- Copy IP on How-to-Play page START ---
-    const ipAddressElement = document.getElementById('server-ip-address');
-    if(ipAddressElement) {
-        const copyIcon = ipAddressElement.nextElementSibling;
-        const feedbackElement = document.getElementById('copy-ip-feedback');
-        const ipToCopy = ipAddressElement.textContent.trim();
-
-        const copyAction = () => {
-            navigator.clipboard.writeText(ipToCopy).then(() => {
-                if(feedbackElement) {
-                    feedbackElement.style.display = 'inline';
-                    setTimeout(() => {
-                        feedbackElement.style.display = 'none';
-                    }, 2000);
-                }
-            }).catch(err => {
-                console.error('Falha ao copiar o IP: ', err);
-                alert('Não foi possível copiar o IP. Por favor, copie manualmente.');
-            });
-        };
-
-        ipAddressElement.addEventListener('click', copyAction);
-        if(copyIcon) {
-            copyIcon.addEventListener('click', copyAction);
-        }
-    }
-    // --- Copy IP on How-to-Play page END ---
 
 });

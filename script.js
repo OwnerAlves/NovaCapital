@@ -138,15 +138,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Active navigation link styling
-    const currentLocation = window.location.pathname.split('/').pop() || 'index.html';
+    const currentLocation = window.location.pathname;
     const allNavLinks = document.querySelectorAll('.nav-links a');
     allNavLinks.forEach(link => {
-        const linkPage = link.getAttribute('href').split('/').pop();
-        if (linkPage === currentLocation) {
+        const linkHref = link.getAttribute('href');
+        // Check for exact match or if it's the index page
+        if (linkHref === currentLocation.substring(currentLocation.lastIndexOf('/') + 1) || (currentLocation.endsWith('/') && linkHref === 'index.html')) {
+             link.classList.add('active');
+        } else if (currentLocation.includes(linkHref) && linkHref !== 'index.html' && linkHref !== '') {
             link.classList.add('active');
-        }
-        if (currentLocation === '' && linkPage === 'index.html') {
-            link.classList.add('active');
+        } else if ((currentLocation.endsWith('/') || currentLocation.endsWith('index.html')) && link.getAttribute('href') === 'index.html') {
+             link.classList.add('active');
         }
     });
 
@@ -155,17 +157,34 @@ document.addEventListener('DOMContentLoaded', () => {
     ruleCategoryHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
-            const icon = header.querySelector('.toggle-icon');
             
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                if (icon) icon.style.transform = 'rotate(0deg)';
+            // Toggle 'open' class for styling the header/icon
+            header.classList.toggle('open');
+            
+            if (content.style.maxHeight) {
+                // If it's open, close it
+                content.style.maxHeight = null;
             } else {
-                content.style.display = 'block';
-                if (icon) icon.style.transform = 'rotate(90deg)';
+                // If it's closed, open it
+                content.style.maxHeight = content.scrollHeight + "px";
+            } 
+        });
+    });
+
+    // FAQ page: Expandable categories
+    const faqCategoryHeaders = document.querySelectorAll('.faq-category-header');
+    faqCategoryHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            header.classList.toggle('open');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
             }
         });
     });
+
 
     // Basic form submission handler (prevents default and logs for now)
     const forms = document.querySelectorAll('form');
@@ -212,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 8000); // Increased timeout for longer message
             } else {
                 alert('Seu ticket foi enviado com sucesso! Iremos analisar e enviar uma resposta para o seu e-mail. Para assuntos de extrema importância, por favor, entre em nosso Discord.');
+                form.reset();
             }
         } catch (error) {
             console.error("Erro ao salvar ticket no localStorage:", error);
@@ -221,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const ADMIN_PASSWORD = "ncrp2025"; // Store securely in a real app!
 
+    // This function is no longer used for page load authentication.
     function authenticateAdmin() {
         const enteredPassword = prompt("Por favor, insira a senha de administrador:", "");
         if (enteredPassword === ADMIN_PASSWORD) {
@@ -428,10 +449,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // --- Support Ticket System END ---
 
+    // --- Simulated Player Count START ---
+    function updatePlayerCount() {
+        const playerCountElement = document.getElementById('player-count');
+        if (playerCountElement) {
+            // Player count is hardcoded to 0/100, so this function is disabled
+            // // Let's assume a base of 78 players and fluctuate it
+            // let baseCount = 78;
+            // let fluctuation = Math.floor(Math.random() * 11) - 5; // Fluctuate by -5 to +5
+            // let currentPlayers = baseCount + fluctuation;
+
+            // // Ensure it doesn't go below a certain threshold or above max
+            // if (currentPlayers < 60) currentPlayers = 60;
+            // if (currentPlayers > 150) currentPlayers = 150;
+
+            // playerCountElement.textContent = `${currentPlayers} / 150`;
+        }
+    }
+
+    // Update the count when the page loads and then every 7 seconds
+    if (document.getElementById('player-count')) {
+        // Since the server is in development, we don't need to simulate players.
+        // updatePlayerCount(); 
+        // setInterval(updatePlayerCount, 7000); 
+    }
+    // --- Simulated Player Count END ---
+
+
     // --- "Play Now" Button Functionality START ---
     const playNowButton = document.getElementById('playNowButton');
-    if (playNowButton) {
-        const serverIp = "seu.ip.do.servidor:porta"; // !!! REPLACE WITH ACTUAL SERVER IP AND PORT !!!
+    if (playNowButton && playNowButton.getAttribute('href') === '#') { // Keep old logic only if it's the generic button
+        const serverIp = "jogar.novacapitalrp.com:7777"; // !!! REPLACE WITH ACTUAL SERVER IP AND PORT !!!
 
         playNowButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -471,7 +519,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Erro ao copiar o IP. Por favor, copie manualmente: ' + serverIp);
             });
         });
+    } else if (playNowButton) { // Fallback for old functionality if href="#"
+        // The button now links to how-to-play.html, this old logic is deprecated
+        // but kept for reference in case the button is repurposed.
+        // For now, we do nothing as it's a direct link.
     }
     // --- "Play Now" Button Functionality END ---
+
+    // --- Copy IP on How-to-Play page START ---
+    const ipAddressElement = document.getElementById('server-ip-address');
+    if(ipAddressElement) {
+        const copyIcon = ipAddressElement.nextElementSibling;
+        const feedbackElement = document.getElementById('copy-ip-feedback');
+        const ipToCopy = ipAddressElement.textContent.trim();
+
+        const copyAction = () => {
+            navigator.clipboard.writeText(ipToCopy).then(() => {
+                if(feedbackElement) {
+                    feedbackElement.style.display = 'inline';
+                    setTimeout(() => {
+                        feedbackElement.style.display = 'none';
+                    }, 2000);
+                }
+            }).catch(err => {
+                console.error('Falha ao copiar o IP: ', err);
+                alert('Não foi possível copiar o IP. Por favor, copie manualmente.');
+            });
+        };
+
+        ipAddressElement.addEventListener('click', copyAction);
+        if(copyIcon) {
+            copyIcon.addEventListener('click', copyAction);
+        }
+    }
+    // --- Copy IP on How-to-Play page END ---
 
 });
